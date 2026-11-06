@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Введите имя 💕</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Введите имя своей любви:</h1>
+
+        <input type="text" id="nameInput" placeholder="Например, Валера..." autocomplete="off">
+
+        <button id="nextBtn">Дальше</button>
+
+        <p id="message" class="message"></p>
+    </div>
+
+    <script>
+        const input = document.getElementById('nameInput');
+        const button = document.getElementById('nextBtn');
+        const message = document.getElementById('message');
+
+        // Список разрешенных имен (в нижнем регистре)
+        const validNames = ['валера', 'валерочка', 'карапуз', 'карпауз'];
+
+        function checkName() {
+            const name = input.value.trim().toLowerCase();
+
+            if (validNames.includes(name)) {
+                message.textContent = 'Верно, доступ открыт!';
+                message.className = 'message success';
+
+                // Перекидываем на вторую страницу через 1 секунду
+                setTimeout(() => {
+                    window.location.href = 'love.html';
+                }, 1000);
+            } else {
+                message.textContent = 'Попробуйте ещё раз...';
+                message.className = 'message error';
+            }
+        }
+
+        // По клику на кнопку
+        button.addEventListener('click', checkName);
+
+        // По нажатию Enter
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') checkName();
+        });
+    </script>
+</body>
+</html>
