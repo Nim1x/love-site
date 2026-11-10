@@ -97,6 +97,7 @@ button:active {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+
 .love-text {
     font-size: 1.3rem;
     color: #000;
@@ -106,4 +107,132 @@ button:active {
 @media (max-width: 480px) {
     h1 { font-size: 1.5rem; }
     .images img { width: 80px; height: 80px; }
+}
+/* --- Стили для кликабельного сердечка --- */
+.clickable-heart {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.clickable-heart:hover {
+    transform: scale(1.15); /* Чуть увеличивается при наведении */
+}
+
+.love-story {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+    animation: pulse 2s infinite; /* Легкая анимация пульсации */
+}
+
+/* --- Стили для Галереи --- */
+.gallery-container {
+    max-width: 800px; /* Галерее нужно больше места */
+}
+
+.carousel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    height: 350px; /* Высота галереи */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Сами картинки в карусели */
+.carousel-img {
+    position: absolute;
+    width: 250px; /* Размер центральной картинки */
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: all 0.4s ease;
+    border: 4px solid #fff; /* Белая рамка */
+}
+
+/* Центральная картинка (спереди, большая) */
+.carousel-img.center {
+    z-index: 3;
+    transform: scale(1) translateX(0);
+    opacity: 1;
+}
+
+/* Левая картинка (сзади, уменьшенная) */
+.carousel-img.left {
+    z-index: 2;
+    transform: scale(0.7) translateX(-60%);
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+/* Правая картинка (сзади, уменьшенная) */
+.carousel-img.right {
+    z-index: 2;
+    transform: scale(0.7) translateX(60%);
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+/* Кнопки-стрелочки (белые) */
+.nav-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 4;
+    transition: transform 0.1s, background 0.2s;
+    user-select: none;
+}
+
+.nav-btn:hover {
+    background: #f2e6ff;
+}
+
+.nav-btn:active {
+    transform: scale(0.9);
+}
+
+/* Аудио плеер */
+.audio-player {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+audio {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Анимация пульсации для текста */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 600px) {
+    .carousel-track { height: 250px; }
+    .carousel-img { width: 180px; height: 220px; }
+    .carousel-img.left { transform: scale(0.6) translateX(-70%); }
+    .carousel-img.right { transform: scale(0.6) translateX(70%); }
 }

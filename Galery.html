@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши моменты 📸</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container gallery-container">
+        <h1>МММ💖ЫЫЫ</h1>
+
+        <!-- Карусель -->
+        <div class="carousel-wrapper">
+            <button class="nav-btn" id="prevBtn">&#10094;</button>
+            
+            <div class="carousel-track" id="carousel">
+                <!-- Сюда JavaScript будет вставлять картинки -->
+            </div>
+
+            <button class="nav-btn" id="nextBtn">&#10095;</button>
+        </div>
+
+        <!-- Аудио плеер -->
+        <div class="audio-player">
+            <audio controls autoplay loop id="bgMusic">
+                <source src="Trek.mp3" type="audio/mpeg">
+                Ваш браузер не поддерживает аудио.
+            </audio>
+        </div>
+
+        <!-- Автор трека -->
+        <p class="track-credit">Автор трека: Midix - Запах крови</p>
+
+    </div> <!-- Закрытие главного container -->
+
+    <script>
+        // Список всех ваших фотографий
+        const images = [
+            "IMG_20250702_124313_253.jpg",
+            "IMG_20250702_124330_557.jpg",
+            "IMG_20250702_124408_174.jpg",
+            "IMG_20250724_004055_332.jpg",
+            "IMG_20250724_004055_699.jpg",
+            "IMG_20250724_004105_008.jpg",
+            "IMG_20250724_004105_889.jpg",
+            "IMG_20250726_190014_024.jpg",
+            "IMG_20250726_190122_563.jpg",
+            "IMG_20250726_190126_156.jpg",
+            "IMG_20250726_190216_665.jpg",
+            "IMG_20250726_190222_728.jpg",
+            "IMG_20250920_214113_140.jpg",
+            "IMG_20251031_225605_555.jpg",
+            "IMG_20251217_232828_633.jpg",
+            "IMG_20251221_143037_918.jpg",
+            "IMG_20260107_192128_519.jpg",
+            "IMG_20260108_230056_869.jpg",
+            "IMG_20260108_230104_683.jpg",
+            "IMG_20260108_230104_783.jpg",
+            "IMG_20260108_230105_080.jpg",
+            "IMG_20260301_124346_429.jpg",
+            "IMG_20260301_124351_622.jpg",
+            "IMG_20260303_133755_280.jpg",
+            "IMG_20260311_185830_395.jpg",
+            "IMG_20260318_210446_388.jpg",
+            "IMG_20260812_233628_160.jpg",
+            "IMG_20260812_233628_170.jpg",
+            "IMG_20260813_212641_190.jpg",
+            "IMG_20260813_212641_055.jpg",
+            "IMG_20260813_213027_366.jpg",
+            "IMG_20260813_213027_526.jpg",
+            "IMG_20261001_000050_566.jpg",
+            "IMG_20261001_000050_288.jpg",
+            "IMG_20260831_105323_072.jpg",
+            "IMG_20261021_220824_878.jpg"
+        ];
+
+        let currentIndex = 0;
+        const carousel = document.getElementById('carousel');
+
+        // Функция отрисовки карусели
+        function renderCarousel() {
+            carousel.innerHTML = ''; // Очищаем трек
+
+            // Вычисляем индексы для левой, центральной и правой картинки
+            const leftIndex = (currentIndex - 1 + images.length) % images.length;
+            const rightIndex = (currentIndex + 1) % images.length;
+
+            // Создаем элементы img
+            const leftImg = document.createElement('img');
+            leftImg.src = images[leftIndex];
+            leftImg.className = 'carousel-img left';
+
+            const centerImg = document.createElement('img');
+            centerImg.src = images[currentIndex];
+            centerImg.className = 'carousel-img center';
+
+            const rightImg = document.createElement('img');
+            rightImg.src = images[rightIndex];
+            rightImg.className = 'carousel-img right';
+
+            // Добавляем их в контейнер
+            carousel.appendChild(leftImg);
+            carousel.appendChild(centerImg);
+            carousel.appendChild(rightImg);
+        }
+
+        // Обработчики кнопок
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            renderCarousel();
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            renderCarousel();
+        });
+
+        // Первый запуск
+        renderCarousel();
+    </script>
+</body>
+</html>
